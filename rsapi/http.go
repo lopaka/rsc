@@ -21,7 +21,7 @@ type FileUpload struct {
 	Reader   io.Reader // Backing reader
 }
 
-type BodyUpload struct {
+type SourceUpload struct {
 	Reader io.Reader
 }
 
@@ -71,11 +71,11 @@ func (a *Api) BuildHTTPRequest(verb, path, version string, params, payload ApiPa
 	var body io.Reader
 	var isMultipart bool
 	var boundary string
-	var isBodyUpload bool
+	var isSourceUpload bool
 	if payload != nil {
 		var fields io.Reader
 		var uploads []*FileUpload
-		var bodyUpload *BodyUpload
+		var sourceUpload *SourceUpload
 		for k, v := range payload {
 			if mpart, ok := v.(*FileUpload); ok {
 				uploads = append(uploads, mpart)
@@ -83,9 +83,9 @@ func (a *Api) BuildHTTPRequest(verb, path, version string, params, payload ApiPa
 			}
 		}
 		for k, v := range payload {
-			if mpart, ok := v.(*BodyUpload); ok {
-				isBodyUpload = true
-				bodyUpload = mpart
+			if mpart, ok := v.(*SourceUpload); ok {
+				isSourceUpload = true
+				sourceUpload = mpart
 				delete(payload, k)
 			}
 		}
@@ -125,8 +125,8 @@ func (a *Api) BuildHTTPRequest(verb, path, version string, params, payload ApiPa
 			}
 			boundary = w.Boundary()
 			body = &buffer
-		} else if isBodyUpload {
-			body = bodyUpload.Reader
+		} else if isSourceUpload {
+			body = sourceUpload.Reader
 		} else {
 			body = fields
 		}
@@ -140,7 +140,7 @@ func (a *Api) BuildHTTPRequest(verb, path, version string, params, payload ApiPa
 	}
 	if isMultipart {
 		req.Header.Set("Content-Type", fmt.Sprintf("multipart/form-data; boundary=%s", boundary))
-	} else if isBodyUpload {
+	} else if isSourceUpload {
 		req.Header.Set("Content-Type", "text/plain")
 	} else {
 		req.Header.Set("Content-Type", "application/json")

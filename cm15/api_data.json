@@ -9537,7 +9537,7 @@
       "update_source": {
         "parameters": {
           "file": {
-            "class": "BodyUpload",
+            "class": "SourceUpload",
             "mandatory": true,
             "non_blank": true
           }
