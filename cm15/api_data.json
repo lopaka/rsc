@@ -9536,6 +9536,11 @@
       },
       "update_source": {
         "parameters": {
+          "body": {
+            "class": "FileUpload",
+            "mandatory": true,
+            "non_blank": true
+          }
         },
         "status_code": "204 No Content",
         "route": "PUT    /api/right_scripts/:id/source(.:format)? {:action=>\"update_source\", :controller=>\"right_scripts\"}",
