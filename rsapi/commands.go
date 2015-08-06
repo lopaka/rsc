@@ -88,7 +88,16 @@ func (a *Api) ParseCommand(cmd, hrefPrefix string, values ActionCommands) (*Pars
 			coerced = &payloadParams
 		}
 		switch param.Type {
-		case "string", "[]string", "interface{}":
+		case "string":
+			// if strings.HasPrefix(value, "@") {
+			// 	var err error
+			// 	value, err = ioutil.ReadFile(value[1:])
+			// 	if err != nil {
+			// 		return nil, fmt.Errorf("failed to load %s value: %s", name, err)
+			// 	}
+			// }
+			*coerced = append(*coerced, ApiParams{name: value})
+		case "[]string", "interface{}":
 			*coerced = append(*coerced, ApiParams{name: value})
 		case "int", "[]int":
 			val, err := strconv.Atoi(value)
@@ -110,6 +119,12 @@ func (a *Api) ParseCommand(cmd, hrefPrefix string, values ActionCommands) (*Pars
 				return nil, fmt.Errorf("Value for '%s' must be of the form NAME=VALUE, got %s", name, value)
 			}
 			*coerced = append(*coerced, ApiParams{fmt.Sprintf("%s[%s]", name, velems[0]): velems[1]})
+		case "plainfile":
+			file, err := os.Open(value)
+			if err != nil {
+				return nil, fmt.Errorf("Invalid file upload path '%s' for %s: %s", value, name, err)
+			}
+			*coerced = append(*coerced, ApiParams{name: &BodyUpload{Reader: file}})
 		case "file":
 			file, err := os.Open(value)
 			if err != nil {

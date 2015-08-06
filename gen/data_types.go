@@ -268,6 +268,8 @@ func (p *ActionParam) Signature() (sig string) {
 		sig = "map[string]interface{}"
 	case *UploadDataType:
 		sig = "*rsapi.FileUpload"
+	case *BodyUploadDataType:
+		sig = "*rsapi.BodyUpload"
 	}
 	return
 }
@@ -362,6 +364,19 @@ func (e *EnumerableDataType) IsEquivalent(other DataType) bool {
 // Implement DataType
 func (e *EnumerableDataType) Name() string {
 	return "map[string]interface{}"
+}
+
+// BodyUploadDataType -- just a string we use as the body
+type BodyUploadDataType string
+
+func (e *BodyUploadDataType) IsEquivalent(other DataType) bool {
+	_, ok := other.(*BodyUploadDataType)
+	return ok
+}
+
+// Implement DataType
+func (e *BodyUploadDataType) Name() string {
+	return "string"
 }
 
 // UploadDataType represents the payload of a multipart request with a file part.

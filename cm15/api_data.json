@@ -9536,8 +9536,8 @@
       },
       "update_source": {
         "parameters": {
-          "body": {
-            "class": "FileUpload",
+          "file": {
+            "class": "BodyUpload",
             "mandatory": true,
             "non_blank": true
           }
