@@ -8710,7 +8710,7 @@ Required parameters:
 				Name: "update_source",
 				Description: `Updates the source of the given RightScript
 Required parameters:
-	body`,
+	file`,
 				PathPatterns: []*metadata.PathPattern{
 					&metadata.PathPattern{
 						HttpMethod: "PUT",
@@ -8721,9 +8721,9 @@ Required parameters:
 				},
 				CommandFlags: []*metadata.ActionParam{
 					&metadata.ActionParam{
-						Name:        "body",
+						Name:        "file",
 						Description: ``,
-						Type:        "file",
+						Type:        "plainfile",
 						Location:    metadata.PayloadParam,
 						Mandatory:   true,
 						NonBlank:    true,
@@ -8731,9 +8731,9 @@ Required parameters:
 				},
 				ApiParams: []*metadata.ActionParam{
 					&metadata.ActionParam{
-						Name:        "body",
+						Name:        "file",
 						Description: ``,
-						Type:        "*rsapi.FileUpload",
+						Type:        "*rsapi.BodyUpload",
 						Location:    metadata.PayloadParam,
 						Mandatory:   true,
 						NonBlank:    true,

@@ -9064,12 +9064,12 @@ func (loc *RightScriptLocator) Update(rightScript *RightScriptParam2) error {
 //
 // Updates the source of the given RightScript
 // Required parameters:
-// body
-func (loc *RightScriptLocator) UpdateSource(body *rsapi.FileUpload) error {
+// file
+func (loc *RightScriptLocator) UpdateSource(file *rsapi.BodyUpload) error {
 	var params rsapi.ApiParams
 	var p rsapi.ApiParams
 	p = rsapi.ApiParams{
-		"body": body,
+		"file": file,
 	}
 	uri, err := loc.ActionPath("RightScript", "update_source")
 	if err != nil {
