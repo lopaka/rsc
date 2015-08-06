@@ -88,16 +88,7 @@ func (a *Api) ParseCommand(cmd, hrefPrefix string, values ActionCommands) (*Pars
 			coerced = &payloadParams
 		}
 		switch param.Type {
-		case "string":
-			// if strings.HasPrefix(value, "@") {
-			// 	var err error
-			// 	value, err = ioutil.ReadFile(value[1:])
-			// 	if err != nil {
-			// 		return nil, fmt.Errorf("failed to load %s value: %s", name, err)
-			// 	}
-			// }
-			*coerced = append(*coerced, ApiParams{name: value})
-		case "[]string", "interface{}":
+		case "string", "[]string", "interface{}":
 			*coerced = append(*coerced, ApiParams{name: value})
 		case "int", "[]int":
 			val, err := strconv.Atoi(value)
