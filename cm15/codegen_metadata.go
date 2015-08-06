@@ -8723,7 +8723,7 @@ Required parameters:
 					&metadata.ActionParam{
 						Name:        "file",
 						Description: ``,
-						Type:        "plainfile",
+						Type:        "sourcefile",
 						Location:    metadata.PayloadParam,
 						Mandatory:   true,
 						NonBlank:    true,
@@ -8733,7 +8733,7 @@ Required parameters:
 					&metadata.ActionParam{
 						Name:        "file",
 						Description: ``,
-						Type:        "*rsapi.BodyUpload",
+						Type:        "*rsapi.SourceUpload",
 						Location:    metadata.PayloadParam,
 						Mandatory:   true,
 						NonBlank:    true,

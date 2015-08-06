@@ -9065,7 +9065,7 @@ func (loc *RightScriptLocator) Update(rightScript *RightScriptParam2) error {
 // Updates the source of the given RightScript
 // Required parameters:
 // file
-func (loc *RightScriptLocator) UpdateSource(file *rsapi.BodyUpload) error {
+func (loc *RightScriptLocator) UpdateSource(file *rsapi.SourceUpload) error {
 	var params rsapi.ApiParams
 	var p rsapi.ApiParams
 	p = rsapi.ApiParams{
