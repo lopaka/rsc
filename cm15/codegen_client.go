@@ -9063,9 +9063,14 @@ func (loc *RightScriptLocator) Update(rightScript *RightScriptParam2) error {
 // PUT /api/right_scripts/:id/source
 //
 // Updates the source of the given RightScript
-func (loc *RightScriptLocator) UpdateSource() error {
+// Required parameters:
+// body
+func (loc *RightScriptLocator) UpdateSource(body *rsapi.FileUpload) error {
 	var params rsapi.ApiParams
 	var p rsapi.ApiParams
+	p = rsapi.ApiParams{
+		"body": body,
+	}
 	uri, err := loc.ActionPath("RightScript", "update_source")
 	if err != nil {
 		return err
@@ -14208,8 +14213,11 @@ type CloudAccountParam struct {
 
 type CloudSpecificAttributes struct {
 	AutomaticInstanceStoreMapping string `json:"automatic_instance_store_mapping,omitempty"`
+	DiskGb                        int    `json:"disk_gb,omitempty"`
 	EbsOptimized                  string `json:"ebs_optimized,omitempty"`
 	IamInstanceProfile            string `json:"iam_instance_profile,omitempty"`
+	MemoryMb                      int    `json:"memory_mb,omitempty"`
+	NumCores                      int    `json:"num_cores,omitempty"`
 	RootVolumePerformance         string `json:"root_volume_performance,omitempty"`
 	RootVolumeSize                string `json:"root_volume_size,omitempty"`
 	RootVolumeTypeUid             string `json:"root_volume_type_uid,omitempty"`
@@ -14217,7 +14225,10 @@ type CloudSpecificAttributes struct {
 
 type CloudSpecificAttributes2 struct {
 	AutomaticInstanceStoreMapping string `json:"automatic_instance_store_mapping,omitempty"`
+	DiskGb                        int    `json:"disk_gb,omitempty"`
 	IamInstanceProfile            string `json:"iam_instance_profile,omitempty"`
+	MemoryMb                      int    `json:"memory_mb,omitempty"`
+	NumCores                      int    `json:"num_cores,omitempty"`
 	RootVolumePerformance         string `json:"root_volume_performance,omitempty"`
 	RootVolumeSize                string `json:"root_volume_size,omitempty"`
 	RootVolumeTypeUid             string `json:"root_volume_type_uid,omitempty"`
