@@ -9555,6 +9555,11 @@
             "class": "String",
             "description": "The new description for the RightScript",
             "non_blank": true
+          },
+          "right_script[source]": {
+            "class": "String",
+            "description": "Source of the RightScript",
+            "non_blank": true
           }
         },
         "status_code": "204 No Content",
