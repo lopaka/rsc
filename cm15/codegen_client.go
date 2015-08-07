@@ -8900,7 +8900,7 @@ func (loc *RightScriptLocator) Commit(rightScript *RightScriptParam) error {
 	return nil
 }
 
-// PUT /api/right_scripts
+// POST /api/right_scripts
 //
 // Creates RightScript
 // Required parameters:

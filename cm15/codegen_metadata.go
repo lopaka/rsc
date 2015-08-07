@@ -8565,7 +8565,7 @@ Required parameters:
 	right_script`,
 				PathPatterns: []*metadata.PathPattern{
 					&metadata.PathPattern{
-						HttpMethod: "PUT",
+						HttpMethod: "POST",
 						Pattern:    "/api/right_scripts",
 						Variables:  []string{},
 						Regexp:     regexp.MustCompile(`^/api/right_scripts$`),
