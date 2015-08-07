@@ -9509,6 +9509,36 @@
   },
   "RightScripts": {
     "methods": {
+      "create": {
+        "parameters": {
+          "right_script": {
+            "class": "Hash",
+            "mandatory": true,
+            "non_blank": true
+          },
+          "right_script[name]": {
+            "class": "String",
+            "description": "The name for the RightScript",
+            "non_blank": true
+          },
+          "right_script[description]": {
+            "class": "String",
+            "description": "The description for the RightScript",
+            "non_blank": true
+          },
+          "right_script[source]": {
+            "class": "String",
+            "description": "Source of the RightScript",
+            "non_blank": true
+					}
+        },
+        "status_code": "204 No Content",
+        "route": "PUT    /api/right_scripts(.:format)?        {:action=>\"create\", :controller=>\"right_scripts\"}",
+        "access_rules": [
+          "designer"
+        ],
+        "description": "Creates RightScript"
+      },
       "update": {
         "parameters": {
           "right_script": {
