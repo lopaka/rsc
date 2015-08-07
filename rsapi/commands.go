@@ -90,7 +90,6 @@ func (a *Api) ParseCommand(cmd, hrefPrefix string, values ActionCommands) (*Pars
 		}
 		switch param.Type {
 		case "string":
-			fmt.Printf("%#v", value)
 			if strings.HasPrefix(value, "@") {
 				var err error
 				filename, err := ioutil.ReadFile(value[1:])
