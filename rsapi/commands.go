@@ -2,6 +2,7 @@ package rsapi
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path"
 	"regexp"
@@ -88,7 +89,18 @@ func (a *Api) ParseCommand(cmd, hrefPrefix string, values ActionCommands) (*Pars
 			coerced = &payloadParams
 		}
 		switch param.Type {
-		case "string", "[]string", "interface{}":
+		case "string":
+			fmt.Printf("%#v", value)
+			if strings.HasPrefix(value, "@") {
+				var err error
+				filename, err := ioutil.ReadFile(value[1:])
+				if err != nil {
+					return nil, fmt.Errorf("failed to load %s value: %s", name, err)
+				}
+				value = string(filename)
+			}
+			*coerced = append(*coerced, ApiParams{name: value})
+		case "[]string", "interface{}":
 			*coerced = append(*coerced, ApiParams{name: value})
 		case "int", "[]int":
 			val, err := strconv.Atoi(value)
