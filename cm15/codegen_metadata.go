@@ -8559,6 +8559,57 @@ Required parameters:
 			},
 
 			&metadata.Action{
+				Name: "create",
+				Description: `Creates RightScript
+Required parameters:
+	right_script`,
+				PathPatterns: []*metadata.PathPattern{
+					&metadata.PathPattern{
+						HttpMethod: "PUT",
+						Pattern:    "/api/right_scripts",
+						Variables:  []string{},
+						Regexp:     regexp.MustCompile(`^/api/right_scripts$`),
+					},
+				},
+				CommandFlags: []*metadata.ActionParam{
+					&metadata.ActionParam{
+						Name:        "right_script[description]",
+						Description: `The description for the RightScript`,
+						Type:        "string",
+						Location:    metadata.PayloadParam,
+						Mandatory:   false,
+						NonBlank:    true,
+					},
+					&metadata.ActionParam{
+						Name:        "right_script[source]",
+						Description: `Source of the RightScript`,
+						Type:        "string",
+						Location:    metadata.PayloadParam,
+						Mandatory:   false,
+						NonBlank:    true,
+					},
+					&metadata.ActionParam{
+						Name:        "right_script[name]",
+						Description: `The name for the RightScript`,
+						Type:        "string",
+						Location:    metadata.PayloadParam,
+						Mandatory:   false,
+						NonBlank:    true,
+					},
+				},
+				ApiParams: []*metadata.ActionParam{
+					&metadata.ActionParam{
+						Name:        "right_script",
+						Description: ``,
+						Type:        "*RightScriptParam2",
+						Location:    metadata.PayloadParam,
+						Mandatory:   true,
+						NonBlank:    true,
+					},
+				},
+			},
+
+			&metadata.Action{
 				Name: "index",
 				Description: `Lists RightScripts.
 Optional parameters:
