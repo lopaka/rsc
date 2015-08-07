@@ -14522,6 +14522,7 @@ type RightScriptParam struct {
 type RightScriptParam2 struct {
 	Description string `json:"description,omitempty"`
 	Name        string `json:"name,omitempty"`
+	Source      string `json:"source,omitempty"`
 }
 
 type RouteParam struct {

@@ -8737,6 +8737,14 @@ Required parameters:
 						NonBlank:    true,
 					},
 					&metadata.ActionParam{
+						Name:        "right_script[source]",
+						Description: `Source of the RightScript`,
+						Type:        "string",
+						Location:    metadata.PayloadParam,
+						Mandatory:   false,
+						NonBlank:    true,
+					},
+					&metadata.ActionParam{
 						Name:        "right_script[name]",
 						Description: `The new name for the RightScript`,
 						Type:        "string",
